@@ -14,7 +14,9 @@ on:
 
 permissions:
 
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 
 
@@ -31,12 +33,20 @@ jobs:
       - name: Checkout
 
         uses: actions/checkout@v4
+     
+      - name: Setup Pages
 
+        uses: actions/configure-pages@v6
 
+      - name: Upload
 
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+        
       - name: Deploy
 
-        uses: peaceiris/actions-gh-page@v4
+        uses: actions/deploy-page@v4
 
         with:
 
